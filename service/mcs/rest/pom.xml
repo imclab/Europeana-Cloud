@@ -309,12 +309,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
-			<groupId>com.github.psnc-dl.cassandraunit</groupId>
-			<artifactId>cassandra-unit</artifactId>
-			<version>2.0.1.0</version>
-			<scope>test</scope>
-		</dependency>
+		  <dependency>
+                    <groupId>com.github.psnc-dl.cassandraunit</groupId>
+                    <artifactId>cassandra-unit</artifactId>
+                    <version>2.0.2.1</version>
+                    <scope>test</scope>
+                </dependency>
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-all</artifactId>

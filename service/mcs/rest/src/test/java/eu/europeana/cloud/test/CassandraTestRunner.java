@@ -58,14 +58,14 @@ public class CassandraTestRunner extends BlockJUnit4ClassRunner {
 
 
     protected Session getSession() {
-        return cluster.connect(KEYSPACE);
+        return cluster.connect();
     }
 
 
     private void initKeyspace()
             throws IOException {
-        CQLDataLoader dataLoader = new CQLDataLoader("localhost", PORT);
-        dataLoader.load(new ClassPathCQLDataSet(KEYSPACE_SCHEMA_CQL, KEYSPACE));
+        CQLDataLoader dataLoader = new CQLDataLoader(getSession());
+        dataLoader.load(new ClassPathCQLDataSet(KEYSPACE_SCHEMA_CQL, true, KEYSPACE));
     }
 
 
@@ -77,8 +77,8 @@ public class CassandraTestRunner extends BlockJUnit4ClassRunner {
                         + "';");
         for (Row r : rs.all()) {
             String tableName = r.getString("columnfamily_name");
-            LOGGER.info("Truncating table: " + tableName);
-            session.execute("TRUNCATE " + tableName);
+            LOGGER.info("Truncating table: "  +KEYSPACE +"."+ tableName);
+            session.execute("TRUNCATE " +KEYSPACE +"." + tableName);
         }
     }
 

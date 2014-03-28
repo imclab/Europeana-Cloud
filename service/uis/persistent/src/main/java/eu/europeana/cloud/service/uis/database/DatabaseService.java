@@ -61,7 +61,7 @@ public class DatabaseService {
 			int i = 0;
 			for (String query : cql) {
 				if (i < 2) {
-					session.execute(String.format(query, keyspaceName));
+                                    session.execute(String.format(query, keyspaceName));
 				} else {
 					session.execute(query);
 				}
@@ -120,6 +120,6 @@ public class DatabaseService {
 	@PreDestroy
 	    private void closeConnections() {
 	        LOGGER.info("Cluster is shutting down.");
-	        session.getCluster().shutdown();
+	        session.getCluster().close();
 	    }
 }
